@@ -1,91 +1,46 @@
 package com.ls.ltc.security.data;
 
-import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 public class User {
-	private Integer key;
-	private String login;
-	private String passwd;
-	private String cellphone;
-	private String name;
-	private String addr;
-	private String zone;
-	private String group;
-	private String createBy;
-	private Timestamp createDate;
-	private String updateBy;
-	private Timestamp updateDate;
+
+	private int id;
+	private String userid;
+	private String role;
+	private List<Integer> permissions = Arrays.asList(1, 2, 3);
 	
-	public Integer getKey() {
-		return key;
+	public User(int id, String userid, String role) {
+		super();
+		this.id = id;
+		this.userid = userid;
+		this.role = role;
 	}
-	public void setKey(Integer key) {
-		this.key = key;
+	
+	public int getId() {
+		return id;
 	}
-	public String getLogin() {
-		return login;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public String getUserid() {
+		return userid;
 	}
-	public String getPasswd() {
-		return passwd;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public String getRole() {
+		return role;
 	}
-	public String getCellphone() {
-		return cellphone;
+	public void setRole(String role) {
+		this.role = role;
 	}
-	public void setCellphone(String cellphone) {
-		this.cellphone = cellphone;
+	public List<Integer> getPermissions() {
+		return permissions;
 	}
-	public String getName() {
-		return name;
+	public void setPermissions(List<Integer> permissions) {
+		this.permissions = permissions;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-	public String getZone() {
-		return zone;
-	}
-	public void setZone(String zone) {
-		this.zone = zone;
-	}
-	public String getGroup() {
-		return group;
-	}
-	public void setGroup(String group) {
-		this.group = group;
-	}
-	public String getCreateBy() {
-		return createBy;
-	}
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-	public Timestamp getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Timestamp createDate) {
-		this.createDate = createDate;
-	}
-	public String getUpdateBy() {
-		return updateBy;
-	}
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-	public Timestamp getUpdateDate() {
-		return updateDate;
-	}
-	public void setUpdateDate(Timestamp updateDate) {
-		this.updateDate = updateDate;
-	}
+
+
 }
