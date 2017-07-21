@@ -25,9 +25,6 @@ public class CustomizeRealm extends AuthorizingRealm {
     private UserLoginEntityRepository userLoginEntityRepository;
 
     @Autowired
-    private RoleEntityRepository roleEntityRepository;
-
-    @Autowired
     private AuthService authService;
 
     public CustomizeRealm() {

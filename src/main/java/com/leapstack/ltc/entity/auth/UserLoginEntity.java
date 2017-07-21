@@ -37,9 +37,6 @@ public class UserLoginEntity extends BaseExtendEntity implements Serializable{
             write = "AES_ENCRYPT(?, '" + SecurityConstant.ENCRYPTION_KEY + "')")
     private String password;
 
-    @Column(name = "active")
-    private Boolean active;
-
     @Column(name = "company_id")
     private Integer companyId;
 

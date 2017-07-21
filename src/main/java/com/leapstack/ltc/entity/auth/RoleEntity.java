@@ -31,9 +31,6 @@ public class RoleEntity extends BaseExtendEntity implements Serializable{
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "active", columnDefinition = "TINYINT DEFAULT 0")//default false
-    private Boolean active;
-
     @Column(name = "company_id")
     private Integer companyId;
 

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springframework</groupId>
-	<artifactId>gs-rest-service</artifactId>
+	<artifactId>lts-security</artifactId>
 	<version>0.1.0</version>
 
 	<parent>
@@ -23,7 +23,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
 		<dependency>
@@ -32,12 +39,6 @@
 			<version>1.1.7.RELEASE</version>
 		</dependency>
 
-		<!--<dependency>-->
-		<!--<groupId>com.jayway.jsonpath</groupId>-->
-		<!--<artifactId>json-path</artifactId>-->
-		<!--<scope>test</scope>-->
-		<!--</dependency>-->
-
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -45,13 +46,6 @@
 			<version>1.16.18</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-		<!--<dependency>-->
-		<!--<groupId>commons-codec</groupId>-->
-		<!--<artifactId>commons-codec</artifactId>-->
-		<!--<version>1.4</version>-->
-		<!--</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
@@ -65,11 +59,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!--JPA-->
-		<!--<dependency>-->
-		<!--<groupId>org.springframework.boot</groupId>-->
-		<!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-		<!--</dependency>-->
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -100,7 +90,6 @@
 			<artifactId>querydsl-core</artifactId>
 			<version>4.1.4</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>com.querydsl</groupId>
@@ -152,7 +141,6 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<powermock.version>1.7.0</powermock.version>
 	</properties>
 
 	<build>

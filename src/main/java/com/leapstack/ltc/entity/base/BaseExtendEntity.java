@@ -19,4 +19,7 @@ public class BaseExtendEntity extends BaseEntity{
 
     @Column(name = "modified_by")
     private Integer modifiedBy;
+
+    @Column(name = "active")
+    private Boolean active = true;//default true
 }
