@@ -1,5 +1,8 @@
+package com.leapstack.ltc.service.auth;
+
 import com.google.common.collect.Lists;
 import com.leapstack.ltc.Application;
+import com.leapstack.ltc.config.shiro.CustomizeRealm;
 import com.leapstack.ltc.entity.auth.AccessEntity;
 import com.leapstack.ltc.entity.auth.MenuEntity;
 import com.leapstack.ltc.entity.auth.RoleEntity;
@@ -9,10 +12,6 @@ import com.leapstack.ltc.repository.auth.MenuEntityRepository;
 import com.leapstack.ltc.repository.auth.RoleEntityRepository;
 import com.leapstack.ltc.repository.auth.UserLoginEntityRepository;
 import lombok.extern.log4j.Log4j;
-import org.apache.shiro.config.IniSecurityManagerFactory;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.util.Factory;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +21,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
-import static org.apache.shiro.SecurityUtils.setSecurityManager;
-
-
 /**
- * Created by zhuochen on 2017/7/10.
+ * Created by zhuochen on 2017/7/21.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @Log4j
-public class TempTest{
+public class TestDataInit {
 
     @Autowired
     private MenuEntityRepository menuEntityRepository;
@@ -45,11 +41,6 @@ public class TempTest{
     @Autowired
     private UserLoginEntityRepository userEntityRepository;
 
-    @Before
-    public void init(){
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:test.shiro.ini");
-        setSecurityManager(factory.getInstance());
-    }
 
     /**
      * menu1 -access1,access2
@@ -57,7 +48,7 @@ public class TempTest{
      *
      * user1 -access1,access2,access3,access4
      * user2 -access1,access3
-     * user2 -access1,access2
+     * user3 -access1,access2
      */
     @Test
     @Transactional
@@ -123,11 +114,6 @@ public class TempTest{
         userLoginEntity3.setPassword("pwd3");
         userLoginEntity3.setRoleEntity(roleEntityRepository.findOne(3));
         userEntityRepository.save(userLoginEntity3);
-
-    }
-
-    @Test
-    public void verify(){
 
     }
 
