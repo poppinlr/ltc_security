@@ -1,31 +1,58 @@
-CREATE DATABASE `leapstack` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
-
-CREATE TABLE `mobileSecurityCode` (
-  `mobile` bigint(20) NOT NULL,
-  `securityCode` varchar(20) DEFAULT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifiedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`mobile`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `access` (
+  `access_id` int(11) NOT NULL AUTO_INCREMENT,
+  `access_name` varchar(45) NOT NULL,
+  `menu_id` int(11) DEFAULT NULL,
+  `created_at` DATETIME(6) NOT NULL,
+  `modified_at` DATETIME(6) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `modified_by` int(11) NOT NULL,
+  PRIMARY KEY (`access_id`)
+) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `roleName` varchar(45) NOT NULL,
-  `level` tinyint(4) NOT NULL DEFAULT '0',
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifiedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(45) NOT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT 1,
+  `company_id` int(11) DEFAULT NULL,
+  `created_at` DATETIME(6) NOT NULL,
+  `modified_at` DATETIME(6) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `modified_by` int(11) NOT NULL,
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `role_name_unique_index_1` (`role_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `password` blob NOT NULL,
-  `mobile` bigint(20) NOT NULL,
-  `roleId` tinyint(4) DEFAULT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifiedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `access_role` (
+  `access_role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `access_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`access_role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `menu` (
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu_name` varchar(45)  DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `created_at` DATETIME(6) NOT NULL,
+  `modified_at` DATETIME(6) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-
+CREATE TABLE `user_login` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `password` varbinary(45) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT 1,
+  `created_at` DATETIME(6) NOT NULL,
+  `modified_at` DATETIME(6) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_login_unique_index_1` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
