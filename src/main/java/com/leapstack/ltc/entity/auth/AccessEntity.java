@@ -33,11 +33,11 @@ public class AccessEntity extends BaseExtendEntity implements Serializable{
     private String accessName;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)//(cascade = {CascadeType.PERSIST})
+    @ManyToOne//(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "menu_id")
     private MenuEntity menuEntity;
 
-    @ManyToMany(mappedBy = "accessEntities", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "accessEntities")
     @JsonManagedReference
     private List<RoleEntity> roleEntities;
 

@@ -67,7 +67,7 @@ public class UserManageService {
             entity.setUsername(userLoginEntity.getUsername());
             entity.setPassword(userLoginEntity.getPassword());
             entity.setActive(userLoginEntity.getActive());
-            entity.setCompanyId(userLoginEntity.getCompanyId());
+//            entity.setCompanyId(userLoginEntity.getCompanyId());
             entity.setRoleEntity(roleEntityRepository.findOne(roleId));
             userLoginEntityRepository.save(entity);
             responseMessage.setSuccess(true);

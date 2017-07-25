@@ -3,14 +3,8 @@ package com.leapstack.ltc.service.auth;
 import com.google.common.collect.Lists;
 import com.leapstack.ltc.Application;
 import com.leapstack.ltc.config.shiro.CustomizeRealm;
-import com.leapstack.ltc.entity.auth.AccessEntity;
-import com.leapstack.ltc.entity.auth.MenuEntity;
-import com.leapstack.ltc.entity.auth.RoleEntity;
-import com.leapstack.ltc.entity.auth.UserLoginEntity;
-import com.leapstack.ltc.repository.auth.AccessEntityRepository;
-import com.leapstack.ltc.repository.auth.MenuEntityRepository;
-import com.leapstack.ltc.repository.auth.RoleEntityRepository;
-import com.leapstack.ltc.repository.auth.UserLoginEntityRepository;
+import com.leapstack.ltc.entity.auth.*;
+import com.leapstack.ltc.repository.auth.*;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,6 +34,9 @@ public class TestDataInit {
 
     @Autowired
     private UserLoginEntityRepository userEntityRepository;
+
+    @Autowired
+    private CompanyEntityRepository companyEntityRepository;
 
 
     /**
@@ -101,19 +98,43 @@ public class TestDataInit {
         userLoginEntity1.setUsername("user1");
         userLoginEntity1.setPassword("pwd1");
         userLoginEntity1.setRoleEntity(roleEntityRepository.findOne(1));
+
+
+        CompanyEntity companyEntity = new CompanyEntity();
+        companyEntity.setCompanyName("comp1");
+        companyEntity.setLevel(1);
+        companyEntityRepository.save(companyEntity);
+        CompanyEntity companyEntity1_1 = new CompanyEntity();
+        companyEntity1_1.setCompanyName("comp1.1");
+        companyEntity1_1.setLevel(2);
+        companyEntity1_1.setParentId(1);
+        companyEntityRepository.save(companyEntity1_1);
+        CompanyEntity companyEntity1_1_1 = new CompanyEntity();
+        companyEntity1_1_1.setCompanyName("comp1.1.1");
+        companyEntity1_1_1.setLevel(3);
+        companyEntity1_1_1.setParentId(2);
+        companyEntityRepository.save(companyEntity1_1_1);
+        CompanyEntity companyEntity1_2 = new CompanyEntity();
+        companyEntity1_2.setCompanyName("comp1.2");
+        companyEntity1_2.setLevel(2);
+        companyEntity1_2.setParentId(1);
+        companyEntityRepository.save(companyEntity1_2);
+
+
+        userLoginEntity1.setCompanyEntity(companyEntity);
         userEntityRepository.save(userLoginEntity1);
 
-        UserLoginEntity userLoginEntity2 = new UserLoginEntity();
-        userLoginEntity2.setUsername("user2");
-        userLoginEntity2.setPassword("pwd2");
-        userLoginEntity2.setRoleEntity(roleEntityRepository.findOne(2));
-        userEntityRepository.save(userLoginEntity2);
-
-        UserLoginEntity userLoginEntity3 = new UserLoginEntity();
-        userLoginEntity3.setUsername("user3");
-        userLoginEntity3.setPassword("pwd3");
-        userLoginEntity3.setRoleEntity(roleEntityRepository.findOne(3));
-        userEntityRepository.save(userLoginEntity3);
+//        UserLoginEntity userLoginEntity2 = new UserLoginEntity();
+//        userLoginEntity2.setUsername("user2");
+//        userLoginEntity2.setPassword("pwd2");
+//        userLoginEntity2.setRoleEntity(roleEntityRepository.findOne(2));
+//        userEntityRepository.save(userLoginEntity2);
+//
+//        UserLoginEntity userLoginEntity3 = new UserLoginEntity();
+//        userLoginEntity3.setUsername("user3");
+//        userLoginEntity3.setPassword("pwd3");
+//        userLoginEntity3.setRoleEntity(roleEntityRepository.findOne(3));
+//        userEntityRepository.save(userLoginEntity3);
 
     }
 

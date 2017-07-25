@@ -13,7 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "company")
-@ToString(exclude = "roleEntities")
+@ToString(exclude = {"roleEntities", "userLoginEntities"})
 @EntityListeners(CreateAndModifyListener.class)
 public class CompanyEntity extends BaseExtendEntity implements Serializable {
 
@@ -36,4 +36,7 @@ public class CompanyEntity extends BaseExtendEntity implements Serializable {
     @JsonManagedReference
     private List<RoleEntity> roleEntities;
 
+    @OneToMany(mappedBy = "companyEntity")
+    @JsonManagedReference
+    private List<UserLoginEntity> userLoginEntities;
 }

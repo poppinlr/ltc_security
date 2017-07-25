@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.leapstack.ltc.common.listener.impl.CreateAndModifyListener;
 import com.leapstack.ltc.entity.base.BaseExtendEntity;
 import com.leapstack.ltc.util.SecurityConstant;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
@@ -18,6 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@ToString(exclude = {"companyEntity","roleEntity"})
 @Entity
 @Table(name = "user_login")
 @EntityListeners(CreateAndModifyListener.class)
@@ -38,8 +36,10 @@ public class UserLoginEntity extends BaseExtendEntity implements Serializable{
             write = "AES_ENCRYPT(?, '" + SecurityConstant.ENCRYPTION_KEY + "')")
     private String password;
 
-    @Column(name = "company_id")
-    private Integer companyId;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private CompanyEntity companyEntity;
 
     @JsonBackReference
     @ManyToOne
