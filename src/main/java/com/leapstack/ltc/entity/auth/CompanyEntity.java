@@ -9,33 +9,31 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by zhuochen on 2017/7/12.
- */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ToString(exclude = "accessEntities")
 @Entity
-@Table(name = "menu")
+@Table(name = "company")
+@ToString(exclude = "roleEntities")
 @EntityListeners(CreateAndModifyListener.class)
-public class MenuEntity extends BaseExtendEntity implements Serializable{
+public class CompanyEntity extends BaseExtendEntity implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name = "menu_id")
+    @Column(name = "company_id")
     @Setter(AccessLevel.NONE)
-    private Integer menuId;
+    private Integer companyId;
 
-    @Column(name = "menu_name")
-    private String menuName;
+    @Column(name = "company_name")
+    private String companyName;
+
+    @Column(name = "level")
+    private Integer level;
 
     @Column(name = "parent_id")
-    private Integer parentId;//TODO verify
+    private Integer parentId;
 
-    @Column(name = "url")
-    private String url;
-
-    @OneToMany(mappedBy = "menuEntity")
+    @OneToMany(mappedBy = "companyEntity")
     @JsonManagedReference
-    private List<AccessEntity> accessEntities;
+    private List<RoleEntity> roleEntities;
+
 }

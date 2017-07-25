@@ -23,7 +23,7 @@ public class RoleVO {
             this.setRoleName(roleEntity.getRoleName());
             this.setComment(roleEntity.getComment());
             this.setActive(roleEntity.getActive());
-            this.setCompanyId(roleEntity.getCompanyId());
+//            this.setCompanyId(roleEntity.getCompanyId());
         }
     }
 }

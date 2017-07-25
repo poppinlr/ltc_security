@@ -20,8 +20,7 @@ CREATE TABLE `role` (
   `modified_at` DATETIME(6) NOT NULL,
   `created_by` int(11) NOT NULL,
   `modified_by` int(11) NOT NULL,
-  PRIMARY KEY (`role_id`),
-  UNIQUE KEY `role_name_unique_index_1` (`role_name`)
+  PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `access_role` (
@@ -57,4 +56,18 @@ CREATE TABLE `user_login` (
   `modified_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_login_unique_index_1` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `company` (
+  `company_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(45) NOT NULL,
+  `level` int(11) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT 1,
+  `created_at` DATETIME(6) NOT NULL,
+  `modified_at` DATETIME(6) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`company_id`),
+  UNIQUE KEY `company_unique_index_1` (`company_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

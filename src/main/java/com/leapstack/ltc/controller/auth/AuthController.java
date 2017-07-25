@@ -3,6 +3,7 @@ package com.leapstack.ltc.controller.auth;
 import com.leapstack.ltc.entity.auth.MenuEntity;
 import com.leapstack.ltc.entity.auth.RoleEntity;
 import com.leapstack.ltc.entity.auth.UserLoginEntity;
+import com.leapstack.ltc.vo.auth.MenuVO;
 import com.leapstack.ltc.vo.web.LoginInfo;
 import com.leapstack.ltc.vo.web.ResponseMessage;
 import com.leapstack.ltc.service.auth.AuthService;
@@ -33,7 +34,8 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/auth/menu", method = RequestMethod.GET)
-    public List<MenuEntity> getMenuList(){
+    @ResponseBody
+    public List<MenuVO> getMenuList(){
         return authService.getMenuWithAccessList();
     }
 

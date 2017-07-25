@@ -35,7 +35,7 @@ public class UserManageService {
         List<Integer> companyIds = new ArrayList<>();
         return queryFactory.selectFrom(qUserLoginEntity).join(qRoleEntity)
                 .on(qUserLoginEntity.roleEntity.roleId.eq(qRoleEntity.roleId)
-                        .and(qRoleEntity.companyId.in(companyIds))).fetch();
+                        .and(qRoleEntity.companyEntity.companyId.in(companyIds))).fetch();
     }
 
 

@@ -1,5 +1,7 @@
 package com.leapstack.ltc.entity.auth;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.leapstack.ltc.common.listener.impl.CreateAndModifyListener;
 import com.leapstack.ltc.entity.base.BaseExtendEntity;
 import lombok.*;
@@ -30,11 +32,13 @@ public class AccessEntity extends BaseExtendEntity implements Serializable{
     @Column(name = "access_name")
     private String accessName;
 
-    @ManyToOne//(cascade = {CascadeType.PERSIST})
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)//(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "menu_id")
     private MenuEntity menuEntity;
 
-    @ManyToMany(mappedBy = "accessEntities")
+    @ManyToMany(mappedBy = "accessEntities", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<RoleEntity> roleEntities;
 
 }

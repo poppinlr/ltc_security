@@ -18,7 +18,7 @@ import java.util.List;
  * Created by zhuochen on 2017/7/19.
  */
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/auth/user")
 @Log4j
 public class UserManageController {
 
@@ -26,25 +26,25 @@ public class UserManageController {
     private UserManageService userManageService;
 
     //TODO map return vo without password
-    @RequestMapping(value = "/user/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
     @ResponseBody
     public List<UserLoginEntity> listUser(){
         return userManageService.listUser();
     }
 
-    @RequestMapping(value = "/user/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage createUser(UserLoginEntity userLoginEntity, Integer roleId){
         return userManageService.createUser(userLoginEntity, roleId);
     }
 
-    @RequestMapping(value = "/user/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage updateUser(UserLoginEntity userLoginEntity, Integer roleId){
         return userManageService.updateUser(userLoginEntity, roleId);
     }
 
-    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage deleteUser(Integer userId){
         return userManageService.deleteUser(userId);

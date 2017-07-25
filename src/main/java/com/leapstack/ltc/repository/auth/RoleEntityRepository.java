@@ -15,5 +15,5 @@ import java.util.Set;
 public interface RoleEntityRepository extends JpaRepository<RoleEntity, Integer>{
     RoleEntity findByRoleName(String roleName);
 
-    List<RoleEntity> findByCompanyIdIn(List<Integer> companyIds);
+//    List<RoleEntity> findByCompanyIdIn(List<Integer> companyIds);
 }

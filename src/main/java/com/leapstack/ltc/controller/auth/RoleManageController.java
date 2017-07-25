@@ -16,33 +16,33 @@ import java.util.List;
  * Created by zhuochen on 2017/7/19.
  */
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/auth/role")
 @Log4j
 public class RoleManageController {
 
     @Autowired
     private RoleManageService roleManageService;
 
-    @RequestMapping(value = "/role/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
     @ResponseBody
     public List<RoleEntity> listRole(){
         return roleManageService.listRole();
     }
 
-    @RequestMapping(value = "/role/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage createRole(RoleEntity roleEntity, List<Integer> accessIds){
         return roleManageService.createRole(roleEntity, accessIds);
     }
 
     //TODO access_role table update id will +++++++
-    @RequestMapping(value = "/role/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage updateRole(RoleEntity roleEntity, List<Integer> accessIds){
         return roleManageService.updateRole(roleEntity, accessIds);
     }
 
-    @RequestMapping(value = "/role/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMessage deleteRole(Integer roleId){
         return roleManageService.deleteRole(roleId);

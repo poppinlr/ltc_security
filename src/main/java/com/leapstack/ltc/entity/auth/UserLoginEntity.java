@@ -1,5 +1,6 @@
 package com.leapstack.ltc.entity.auth;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.leapstack.ltc.common.listener.impl.CreateAndModifyListener;
 import com.leapstack.ltc.entity.base.BaseExtendEntity;
 import com.leapstack.ltc.util.SecurityConstant;
@@ -40,6 +41,7 @@ public class UserLoginEntity extends BaseExtendEntity implements Serializable{
     @Column(name = "company_id")
     private Integer companyId;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "role_id")
     private RoleEntity roleEntity;

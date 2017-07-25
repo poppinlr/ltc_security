@@ -26,7 +26,8 @@ public class RoleManageService {
     public List<RoleEntity> listRole() {
         //TODO call adapter to get companyIds
         List<Integer> companyIds = new ArrayList<>();
-        return roleEntityRepository.findByCompanyIdIn(companyIds);
+        return null;
+//        return roleEntityRepository.findByCompanyIdIn(companyIds);
     }
 
     @Transactional
@@ -54,7 +55,7 @@ public class RoleManageService {
             entity.setRoleName(roleEntity.getRoleName());
             entity.setActive(roleEntity.getActive());
             entity.setComment(roleEntity.getComment());
-            entity.setCompanyId(roleEntity.getCompanyId());
+            //entity.setCompanyId(roleEntity.getCompanyId());
             entity.setAccessEntities(accessEntityRepository.findByAccessIdIn(accessIds));
             roleEntityRepository.save(entity);
             responseMessage.setSuccess(true);

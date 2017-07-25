@@ -1,6 +1,7 @@
 package com.leapstack.ltc.service.auth;
 
 import com.leapstack.ltc.entity.auth.*;
+import com.leapstack.ltc.vo.auth.MenuVO;
 import com.leapstack.ltc.vo.web.LoginInfo;
 import com.leapstack.ltc.vo.web.ResponseMessage;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -11,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,13 +57,13 @@ public class AuthService {
                         .and(qUserLoginEntity.userId.eq(userId))).fetch();
     }
 
-    public List<MenuEntity> getMenuWithAccessList(){
+    public List<MenuVO> getMenuWithAccessList(){
+        List<MenuEntity> menuEntities = new ArrayList<>();
+
         Subject subject = SecurityUtils.getSubject();
-        if(subject.getPrincipal() == null){
-            return null;
-        }else{
+        if(subject.getPrincipal() != null){
             UserLoginEntity userLoginEntity = (UserLoginEntity)subject.getPrincipal();
-            return queryFactory.selectFrom(qMenuEntity)
+            menuEntities =  queryFactory.selectFrom(qMenuEntity)
                     .where(qMenuEntity.menuId.in(
                             queryFactory.selectDistinct(qAccessEntity.menuEntity.menuId)
                                     .from(qAccessEntity)
@@ -72,5 +74,12 @@ public class AuthService {
                                                             .and(qUserLoginEntity.userId.eq(userLoginEntity.getUserId())))))
                     )).fetch();
         }
+
+        //do mapper
+        List<MenuVO> responseList = new ArrayList<>();
+        for(MenuEntity entity : menuEntities){
+            responseList.add(EntityMapperToVO.MenuVOMapper(entity));
+        }
+        return responseList;
     }
 }

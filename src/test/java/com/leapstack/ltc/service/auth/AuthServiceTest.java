@@ -2,6 +2,12 @@ package com.leapstack.ltc.service.auth;
 
 import com.leapstack.ltc.Application;
 import com.leapstack.ltc.config.shiro.CustomizeRealm;
+import com.leapstack.ltc.entity.auth.AccessEntity;
+import com.leapstack.ltc.entity.auth.CompanyEntity;
+import com.leapstack.ltc.entity.auth.RoleEntity;
+import com.leapstack.ltc.entity.auth.UserLoginEntity;
+import com.leapstack.ltc.repository.auth.RoleEntityRepository;
+import com.leapstack.ltc.repository.auth.UserLoginEntityRepository;
 import com.leapstack.ltc.vo.web.LoginInfo;
 import lombok.extern.log4j.Log4j;
 import org.apache.shiro.SecurityUtils;
@@ -14,6 +20,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.naming.ldap.PagedResultsControl;
+
+import java.util.List;
 
 import static org.apache.shiro.SecurityUtils.setSecurityManager;
 import static org.junit.Assert.assertEquals;
@@ -31,6 +41,12 @@ public class AuthServiceTest {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private UserLoginEntityRepository repository;
+
+    @Autowired
+    private RoleEntityRepository roleEntityRepository;
 
     @Before
     public void init(){
@@ -68,5 +84,14 @@ public class AuthServiceTest {
         assertEquals(authService.getRoleNamesByUserId(1).size(), 1);
         assertEquals(authService.getRoleNamesByUserId(2).size(), 1);
         assertEquals(authService.getRoleNamesByUserId(3).size(), 1);
+    }
+
+    @Test
+    public void getRole(){
+        RoleEntity roleEntity = roleEntityRepository.findByRoleName("role1");
+        List<AccessEntity> accessEntities = roleEntity.getAccessEntities();
+        CompanyEntity companyEntity = roleEntity.getCompanyEntity();
+        List<UserLoginEntity> loginEntities = roleEntity.getUserLoginEntities();
+//        UserLoginEntity entity = repository.findByUsername("user1");
     }
 }
