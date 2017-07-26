@@ -14,15 +14,12 @@ public class RoleVO {
     private Integer roleId;
     private String roleName;
     private String comment;
-    private Boolean active;
-    private Integer companyId;
 
     public RoleVO(RoleEntity roleEntity){
         if(roleEntity != null){
             this.setRoleId(roleEntity.getRoleId());
             this.setRoleName(roleEntity.getRoleName());
             this.setComment(roleEntity.getComment());
-            this.setActive(roleEntity.getActive());
 //            this.setCompanyId(roleEntity.getCompanyId());
         }
     }

@@ -17,6 +17,8 @@ import java.util.List;
 @Repository
 public interface MenuEntityRepository extends JpaRepository<MenuEntity,Integer>{
 
+    MenuEntity findByMenuName(String name);
+
 //    List<MenuEntity> findByMenuIdIn(List<Long> menuId);
 
 //    List<MenuEntity> findByMenuEntityIn(List<MenuEntity> menuEntities);

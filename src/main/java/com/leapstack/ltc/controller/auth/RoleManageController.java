@@ -5,6 +5,8 @@ import com.leapstack.ltc.service.auth.RoleManageService;
 import com.leapstack.ltc.vo.web.ResponseMessage;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,12 +24,6 @@ public class RoleManageController {
 
     @Autowired
     private RoleManageService roleManageService;
-
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
-    @ResponseBody
-    public List<RoleEntity> listRole(){
-        return roleManageService.listRole();
-    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody

@@ -35,6 +35,7 @@ CREATE TABLE `menu` (
   `menu_name` varchar(45)  DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
+  `icon` varchar(45) DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   `created_at` DATETIME(6) NOT NULL,
   `modified_at` DATETIME(6) NOT NULL,

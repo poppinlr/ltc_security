@@ -1,6 +1,7 @@
 package com.leapstack.ltc.service.auth;
 
 import com.leapstack.ltc.entity.auth.*;
+import com.leapstack.ltc.service.common.EntityMapperToVO;
 import com.leapstack.ltc.vo.auth.MenuVO;
 import com.leapstack.ltc.vo.web.LoginInfo;
 import com.leapstack.ltc.vo.web.ResponseMessage;

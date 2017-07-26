@@ -3,10 +3,14 @@ package com.leapstack.ltc.service.auth;
 import com.leapstack.ltc.entity.auth.*;
 import com.leapstack.ltc.repository.auth.RoleEntityRepository;
 import com.leapstack.ltc.repository.auth.UserLoginEntityRepository;
+import com.leapstack.ltc.vo.web.PageResponse;
 import com.leapstack.ltc.vo.web.ResponseMessage;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.hibernate.annotations.SQLUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,23 +23,25 @@ import java.util.List;
 public class UserManageService {
 
     @Autowired
-    private JPAQueryFactory queryFactory;
-
-    @Autowired
     private UserLoginEntityRepository userLoginEntityRepository;
 
     @Autowired
     private RoleEntityRepository roleEntityRepository;
 
-    private static QUserLoginEntity qUserLoginEntity = QUserLoginEntity.userLoginEntity;
-    private static QRoleEntity qRoleEntity = QRoleEntity.roleEntity;
+    @Autowired
+    private CompanyManageService companyManageService;
 
-    public List<UserLoginEntity> listUser() {
-        //TODO call adapter to get companyIds
-        List<Integer> companyIds = new ArrayList<>();
-        return queryFactory.selectFrom(qUserLoginEntity).join(qRoleEntity)
-                .on(qUserLoginEntity.roleEntity.roleId.eq(qRoleEntity.roleId)
-                        .and(qRoleEntity.companyEntity.companyId.in(companyIds))).fetch();
+    private static QUserLoginEntity qUserLoginEntity = QUserLoginEntity.userLoginEntity;
+
+    public Page<UserLoginEntity> listUser(PageRequest pageRequest, Integer companyId, Integer roleId) {
+        BooleanBuilder when = null;
+        if(roleId == null){
+            when = new BooleanBuilder(qUserLoginEntity.companyEntity.companyId.eq(companyId));
+        }else{
+            when = new BooleanBuilder(qUserLoginEntity.roleEntity.roleId.eq(roleId).and(qUserLoginEntity.companyEntity.companyId.eq(companyId)));
+        }
+
+        return userLoginEntityRepository.findAll(when, pageRequest);
     }
 
 

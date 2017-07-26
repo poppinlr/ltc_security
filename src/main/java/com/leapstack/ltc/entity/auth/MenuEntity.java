@@ -35,6 +35,9 @@ public class MenuEntity extends BaseExtendEntity implements Serializable{
     @Column(name = "url")
     private String url;
 
+    @Column(name = "icon")
+    private String icon;
+
     @OneToMany(mappedBy = "menuEntity")
     @JsonManagedReference
     private List<AccessEntity> accessEntities;

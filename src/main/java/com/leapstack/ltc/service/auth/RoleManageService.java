@@ -1,10 +1,18 @@
 package com.leapstack.ltc.service.auth;
 
+import com.google.common.collect.Lists;
+import com.leapstack.ltc.entity.auth.CompanyEntity;
+import com.leapstack.ltc.entity.auth.QCompanyEntity;
+import com.leapstack.ltc.entity.auth.QRoleEntity;
 import com.leapstack.ltc.entity.auth.RoleEntity;
 import com.leapstack.ltc.repository.auth.AccessEntityRepository;
 import com.leapstack.ltc.repository.auth.RoleEntityRepository;
 import com.leapstack.ltc.vo.web.ResponseMessage;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,13 +30,6 @@ public class RoleManageService {
 
     @Autowired
     private AccessEntityRepository accessEntityRepository;
-
-    public List<RoleEntity> listRole() {
-        //TODO call adapter to get companyIds
-        List<Integer> companyIds = new ArrayList<>();
-        return null;
-//        return roleEntityRepository.findByCompanyIdIn(companyIds);
-    }
 
     @Transactional
     public ResponseMessage createRole(RoleEntity roleEntity, List<Integer> accessIds) {

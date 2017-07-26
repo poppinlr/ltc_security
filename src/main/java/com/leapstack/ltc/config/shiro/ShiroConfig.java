@@ -50,7 +50,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/loginPage");
 
         filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/auth/*", "authc");
+        filterChainDefinitionMap.put("/auth/**", "authc");
 
 //        shiroFilterFactoryBean.setSuccessUrl("/success");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
