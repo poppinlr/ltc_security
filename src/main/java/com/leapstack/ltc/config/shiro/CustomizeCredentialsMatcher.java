@@ -1,6 +1,5 @@
 package com.leapstack.ltc.config.shiro;
 
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

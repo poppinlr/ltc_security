@@ -3,8 +3,6 @@ package com.leapstack.ltc.vo.auth;
 import com.leapstack.ltc.entity.auth.RoleEntity;
 import lombok.Data;
 
-import javax.persistence.Column;
-
 /**
  * Created by zhuochen on 2017/7/18.
  */

@@ -2,7 +2,6 @@ package com.leapstack.ltc.entity.project;
 
 import com.leapstack.ltc.common.listener.impl.CreateAndModifyListener;
 import com.leapstack.ltc.entity.base.BaseExtendEntity;
-import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

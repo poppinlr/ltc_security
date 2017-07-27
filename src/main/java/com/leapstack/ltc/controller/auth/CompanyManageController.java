@@ -39,7 +39,7 @@ public class CompanyManageController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseMessage deleteCompany(@Valid CompanyVO companyVO){
-        return companyManageService.deleteCompany(companyVO);
+    public ResponseMessage deleteCompany(Integer companyId){
+        return companyManageService.deleteCompany(companyId);
     }
 }

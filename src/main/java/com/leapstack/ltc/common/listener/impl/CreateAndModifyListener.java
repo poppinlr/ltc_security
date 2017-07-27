@@ -19,6 +19,7 @@ public class CreateAndModifyListener {
     public void setCreatedAtAndCreatedBy(BaseExtendEntity entity){
         entity.setCreatedAt(new Date());
 
+
         Subject subject = SecurityUtils.getSubject();
         if(subject.getPrincipal() == null){
             entity.setCreatedBy(SecurityConstant.ADMIN_ID);

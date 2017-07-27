@@ -2,7 +2,6 @@ package com.leapstack.ltc.util;
 
 import com.leapstack.ltc.entity.auth.UserLoginEntity;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 
 /**
  * Created by zhuochen on 2017/7/19.

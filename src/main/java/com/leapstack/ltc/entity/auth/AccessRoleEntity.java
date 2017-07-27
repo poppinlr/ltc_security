@@ -1,10 +1,7 @@
 package com.leapstack.ltc.entity.auth;
 
-import com.leapstack.ltc.common.listener.impl.CreateAndModifyListener;
-import com.leapstack.ltc.entity.base.BaseExtendEntity;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 import javax.persistence.*;

@@ -1,7 +1,6 @@
 package com.leapstack.ltc.config.shiro;
 
 import com.leapstack.ltc.entity.auth.UserLoginEntity;
-import com.leapstack.ltc.repository.auth.RoleEntityRepository;
 import com.leapstack.ltc.repository.auth.UserLoginEntityRepository;
 import com.leapstack.ltc.service.auth.AuthService;
 import lombok.extern.log4j.Log4j;
@@ -11,7 +10,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;

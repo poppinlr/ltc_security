@@ -1,7 +1,5 @@
 package com.leapstack.ltc.vo.auth;
 
-import com.leapstack.ltc.entity.auth.RoleEntity;
-import com.leapstack.ltc.entity.auth.UserLoginEntity;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

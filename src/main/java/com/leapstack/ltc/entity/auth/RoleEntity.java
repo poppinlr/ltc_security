@@ -6,7 +6,6 @@ import com.leapstack.ltc.common.listener.impl.CreateAndModifyListener;
 import com.leapstack.ltc.entity.base.BaseExtendEntity;
 import lombok.*;
 
-import javax.jdo.annotations.Join;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

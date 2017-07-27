@@ -1,7 +1,7 @@
 package com.leapstack.ltc.controller.auth;
 
-import com.leapstack.ltc.entity.auth.UserLoginEntity;
 import com.leapstack.ltc.service.auth.UserManageService;
+import com.leapstack.ltc.vo.auth.UserLoginVO;
 import com.leapstack.ltc.vo.web.ResponseMessage;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +31,14 @@ public class UserManageController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseMessage createUser(UserLoginEntity userLoginEntity, Integer roleId){
-        return userManageService.createUser(userLoginEntity, roleId);
+    public ResponseMessage createUser(UserLoginVO userLoginVO, Integer roleId){
+        return userManageService.createUser(userLoginVO, roleId);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseMessage updateUser(UserLoginEntity userLoginEntity, Integer roleId){
-        return userManageService.updateUser(userLoginEntity, roleId);
+    public ResponseMessage updateUser(UserLoginVO userLoginVO, Integer roleId){
+        return userManageService.updateUser(userLoginVO, roleId);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
