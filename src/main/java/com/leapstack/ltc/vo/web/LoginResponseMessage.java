@@ -10,8 +10,10 @@ public class LoginResponseMessage {
 
     private Boolean success = false;
     private String message;
+    private String name;
     private Integer userId;
     private String username;
     private Integer roleId;
+    private String roleName;
 //    private Object response;
 }

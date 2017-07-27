@@ -1,5 +1,6 @@
 package com.leapstack.ltc.vo.auth;
 
+import com.leapstack.ltc.entity.auth.AccessEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +11,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccessVO {
+public class AccessResponseVO {
 
     private Integer accessId;
 
     private String accessName;
+
+    public AccessResponseVO(AccessEntity entity) {
+        this.accessId = entity.getAccessId();
+        this.accessName = entity.getAccessName();
+    }
 }

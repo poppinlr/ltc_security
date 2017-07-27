@@ -12,7 +12,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class BaseExtendEntity extends BaseEntity{
+public class BaseExtendEntity extends BaseEntity {
 
     @Column(name = "created_by", updatable = false)
     private Integer createdBy;

@@ -10,7 +10,7 @@ import java.util.List;
  * Created by zhuochen on 2017/7/13.
  */
 @Repository
-public interface AccessEntityRepository extends JpaRepository<AccessEntity, Integer>{
+public interface AccessEntityRepository extends JpaRepository<AccessEntity, Integer> {
     List<AccessEntity> findByAccessIdIn(List<Integer> ids);
 
 }

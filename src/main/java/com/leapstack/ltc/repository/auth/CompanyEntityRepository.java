@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface CompanyEntityRepository extends JpaRepository<CompanyEntity, Integer> {
 
-    
+
     List<CompanyEntity> findByParentId(Integer id);
 
     CompanyEntity findByCompanyName(String name);

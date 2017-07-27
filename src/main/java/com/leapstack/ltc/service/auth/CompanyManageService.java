@@ -1,10 +1,11 @@
 package com.leapstack.ltc.service.auth;
 
+import com.google.common.collect.Lists;
 import com.leapstack.ltc.entity.auth.CompanyEntity;
 import com.leapstack.ltc.entity.auth.UserLoginEntity;
 import com.leapstack.ltc.repository.auth.CompanyEntityRepository;
-import com.leapstack.ltc.service.common.EntityMapperToVO;
-import com.leapstack.ltc.vo.auth.CompanyVO;
+import com.leapstack.ltc.vo.auth.CompanyRequestVO;
+import com.leapstack.ltc.vo.auth.CompanyResponseVO;
 import com.leapstack.ltc.vo.web.ResponseMessage;
 import lombok.extern.log4j.Log4j;
 import org.apache.shiro.SecurityUtils;
@@ -21,88 +22,71 @@ public class CompanyManageService {
     @Autowired
     private CompanyEntityRepository companyEntityRepository;
 
-    public List<CompanyVO> getCompanyVOList() {
+    public List<CompanyResponseVO> getCompanyVOList() {
         //get company entity list
-        ArrayList<CompanyEntity> companyEntities = listCompany();
+        UserLoginEntity userLoginEntity = (UserLoginEntity) SecurityUtils.getSubject().getPrincipal();
+        ArrayList<CompanyEntity> companyEntities = new ArrayList<>();
+        CompanyEntity userCompany = companyEntityRepository.findOne(userLoginEntity.getCompanyEntity().getCompanyId());
+        if (userCompany != null) {
+            getCompany(companyEntities, Lists.newArrayList(userCompany));
+        }
 
         //do mapper
-        ArrayList<CompanyVO> companyVOArrayList = new ArrayList<>();
-        for(CompanyEntity entity : companyEntities){
-            companyVOArrayList.add(EntityMapperToVO.CompanyVOMapper(entity));
+        ArrayList<CompanyResponseVO> companyVOArrayList = new ArrayList<>();
+        for (CompanyEntity entity : companyEntities) {
+            companyVOArrayList.add(new CompanyResponseVO(entity));
         }
 
         return companyVOArrayList;
     }
 
-    public ArrayList<CompanyEntity> listCompany(){
-        UserLoginEntity userLoginEntity = (UserLoginEntity)SecurityUtils.getSubject().getPrincipal();
-        ArrayList<CompanyEntity> companyEntities = new ArrayList<>();
-        CompanyEntity userCompany = userLoginEntity.getCompanyEntity();
-        if(userCompany != null){
-            companyEntities.add(companyEntityRepository.findOne(userCompany.getCompanyId()));//do search and set user&role lists
-            List<CompanyEntity> childCompanies = companyEntityRepository.findByParentId(userCompany.getCompanyId());
-            getCompany(companyEntities, childCompanies);
-        }
-
-        return companyEntities;
-    }
-
-    private void getCompany(List<CompanyEntity> list, List<CompanyEntity> companyEntities){
-        for(CompanyEntity entity : companyEntities){
+    private void getCompany(List<CompanyEntity> list, List<CompanyEntity> companyEntities) {
+        for (CompanyEntity entity : companyEntities) {
             list.add(entity);
             List<CompanyEntity> entities = companyEntityRepository.findByParentId(entity.getCompanyId());
-            if(entities!= null){
+            if (entities != null) {
                 getCompany(list, entities);
             }
         }
 
     }
 
-    public ResponseMessage saveCompany(CompanyVO companyVO) {
+    public ResponseMessage saveCompany(CompanyRequestVO companyVO) {
         ResponseMessage responseMessage = new ResponseMessage();
 
-        CompanyEntity companyEntity = companyEntityRepository.findByCompanyName(companyVO.getCompanyName());
-        if(companyEntity == null){
-            companyEntity = new CompanyEntity();
-            companyEntity.setCompanyName(companyVO.getCompanyName());
-            companyEntity.setLevel(companyVO.getLevel());
-            companyEntity.setParentId(companyVO.getParentId());
-        }else{
-            companyEntity.setLevel(companyVO.getLevel());
-            companyEntity.setParentId(companyVO.getParentId());
-            companyEntity.setActive(true);
-        }
+        CompanyEntity companyEntity = new CompanyEntity();
+        companyEntity.setCompanyName(companyVO.getCompanyName());
+        companyEntity.setLevel(companyVO.getLevel());
+        companyEntity.setParentId(companyVO.getParentId());
 
-        try{
+        try {
             companyEntityRepository.save(companyEntity);
             responseMessage.setSuccess(true);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("create company : " + companyEntity + " error: ", e);
-            responseMessage.setMessage(e.getMessage());
+            responseMessage.setMessage("创建公司失败");
         }
-
 
         return responseMessage;
     }
 
-    public ResponseMessage updateCompany(CompanyVO companyVO) {
+    public ResponseMessage updateCompany(CompanyRequestVO companyVO) {
         ResponseMessage responseMessage = new ResponseMessage();
 
         CompanyEntity companyEntity = companyEntityRepository.findOne(companyVO.getCompanyId());
-        if(companyEntity == null){
-            responseMessage.setMessage("company id doesn't exist!");
-        }else{
+        if (companyEntity == null) {
+            responseMessage.setMessage("公司不存在");
+        } else {
             companyEntity.setCompanyName(companyVO.getCompanyName());
             companyEntity.setParentId(companyVO.getParentId());
             companyEntity.setLevel(companyVO.getLevel());
-        }
-
-        try{
-            companyEntityRepository.save(companyEntity);
-            responseMessage.setSuccess(true);
-        }catch (Exception e){
-            log.error("update company : " + companyEntity + " error: ", e);
-            responseMessage.setMessage(e.getMessage());
+            try {
+                companyEntityRepository.save(companyEntity);
+                responseMessage.setSuccess(true);
+            } catch (Exception e) {
+                log.error("update company : " + companyEntity + " error: ", e);
+                responseMessage.setMessage("修改公司失败");
+            }
         }
 
         return responseMessage;
@@ -112,18 +96,17 @@ public class CompanyManageService {
         ResponseMessage responseMessage = new ResponseMessage();
 
         CompanyEntity companyEntity = companyEntityRepository.findOne(companyId);
-        if(companyEntity == null){
-            responseMessage.setMessage("company id doesn't exist!");
-        }else{
+        if (companyEntity == null) {
+            responseMessage.setMessage("公司不存在");
+        } else {
             companyEntity.setActive(false);
-        }
-
-        try{
-            companyEntityRepository.save(companyEntity);
-            responseMessage.setSuccess(true);
-        }catch (Exception e){
-            log.error("delete company : " + companyEntity + " error: ", e);
-            responseMessage.setMessage(e.getMessage());
+            try {
+                companyEntityRepository.save(companyEntity);
+                responseMessage.setSuccess(true);
+            } catch (Exception e) {
+                log.error("delete company : " + companyEntity + " error: ", e);
+                responseMessage.setMessage("删除公司失败");
+            }
         }
 
         return responseMessage;

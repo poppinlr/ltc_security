@@ -17,11 +17,11 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ToString(exclude = {"menuEntity","roleEntities"})
+@ToString(exclude = {"menuEntity", "roleEntities"})
 @Entity
 @Table(name = "access")
 @EntityListeners(CreateAndModifyListener.class)
-public class AccessEntity extends BaseExtendEntity implements Serializable{
+public class AccessEntity extends BaseExtendEntity implements Serializable {
 
     @Id
     @GeneratedValue
@@ -32,9 +32,9 @@ public class AccessEntity extends BaseExtendEntity implements Serializable{
     @Column(name = "access_name")
     private String accessName;
 
-    @JsonBackReference
     @ManyToOne//(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "menu_id")
+    @JsonBackReference
     private MenuEntity menuEntity;
 
     @ManyToMany(mappedBy = "accessEntities")

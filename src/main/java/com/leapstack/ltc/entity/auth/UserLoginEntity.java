@@ -15,11 +15,11 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ToString(exclude = {"companyEntity","roleEntity"})
+@ToString(exclude = {"companyEntity", "roleEntity"})
 @Entity
 @Table(name = "user_login")
 @EntityListeners(CreateAndModifyListener.class)
-public class UserLoginEntity extends BaseExtendEntity implements Serializable{
+public class UserLoginEntity extends BaseExtendEntity implements Serializable {
 
     @Id
     @GeneratedValue
@@ -42,14 +42,14 @@ public class UserLoginEntity extends BaseExtendEntity implements Serializable{
     @Column(name = "email")
     private String email;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonBackReference
     private CompanyEntity companyEntity;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "role_id")
+    @JsonBackReference
     private RoleEntity roleEntity;
 
 }

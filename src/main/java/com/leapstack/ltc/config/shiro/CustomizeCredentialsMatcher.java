@@ -16,7 +16,7 @@ public class CustomizeCredentialsMatcher extends SimpleCredentialsMatcher {
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-        UsernamePasswordToken utoken=(UsernamePasswordToken) token;
+        UsernamePasswordToken utoken = (UsernamePasswordToken) token;
         return this.equals(new String(utoken.getPassword()), info.getCredentials());
     }
 }

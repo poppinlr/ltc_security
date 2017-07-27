@@ -1,11 +1,12 @@
 package com.leapstack.ltc.controller.auth;
 
 import com.leapstack.ltc.service.auth.UserManageService;
-import com.leapstack.ltc.vo.auth.UserLoginVO;
+import com.leapstack.ltc.vo.auth.UserLoginRequestVO;
+import com.leapstack.ltc.vo.auth.UserLoginResponseVO;
+import com.leapstack.ltc.vo.web.PageResponse;
 import com.leapstack.ltc.vo.web.ResponseMessage;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,25 +26,25 @@ public class UserManageController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public Page listUser(PageRequest pageRequest, Integer companyId, Integer roleId){
+    public PageResponse<UserLoginResponseVO> listUser(PageRequest pageRequest, Integer companyId, Integer roleId) {
         return userManageService.listUser(pageRequest, companyId, roleId);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseMessage createUser(UserLoginVO userLoginVO, Integer roleId){
-        return userManageService.createUser(userLoginVO, roleId);
+    public ResponseMessage createUser(UserLoginRequestVO requestVO) {
+        return userManageService.createUser(requestVO);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseMessage updateUser(UserLoginVO userLoginVO, Integer roleId){
-        return userManageService.updateUser(userLoginVO, roleId);
+    public ResponseMessage updateUser(UserLoginRequestVO userLoginVO) {
+        return userManageService.updateUser(userLoginVO);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseMessage deleteUser(Integer userId){
+    public ResponseMessage deleteUser(Integer userId) {
         return userManageService.deleteUser(userId);
     }
 }

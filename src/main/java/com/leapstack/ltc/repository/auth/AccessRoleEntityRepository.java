@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by zhuochen on 2017/7/19.
  */
 @Repository
-public interface AccessRoleEntityRepository extends JpaRepository<AccessRoleEntity, Integer>{
+public interface AccessRoleEntityRepository extends JpaRepository<AccessRoleEntity, Integer> {
 }

@@ -47,7 +47,7 @@ public class CustomizeRealm extends AuthorizingRealm {
 
         UserLoginEntity userLoginEntity = (UserLoginEntity) principals.getPrimaryPrincipal();
         List<String> roleList = authService.getRoleNamesByUserId(userLoginEntity.getUserId());
-        if(roleList != null && roleList.size() > 0){
+        if (roleList != null && roleList.size() > 0) {
             authorizationInfo.setRoles(new HashSet<>(roleList));
         }
 //

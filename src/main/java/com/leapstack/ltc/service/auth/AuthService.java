@@ -31,19 +31,19 @@ public class AuthService {
     public LoginResponseMessage login(LoginInfo loginInfo) {
         LoginResponseMessage responseMessage = new LoginResponseMessage();
 
-        if(loginInfo != null){
-            UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(loginInfo.getUsername(),loginInfo.getPassword());
+        if (loginInfo != null) {
+            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginInfo.getUsername(), loginInfo.getPassword());
             Subject subject = SecurityUtils.getSubject();
 
-            try{
+            try {
                 subject.login(usernamePasswordToken);
 
-                UserLoginEntity userLoginEntity = (UserLoginEntity)subject.getPrincipal();
+                UserLoginEntity userLoginEntity = (UserLoginEntity) subject.getPrincipal();
                 responseMessage.setRoleId(userLoginEntity.getRoleEntity().getRoleId());
                 responseMessage.setUserId(userLoginEntity.getUserId());
                 responseMessage.setUsername(userLoginEntity.getUsername());
                 responseMessage.setSuccess(true);
-            }catch (Exception e){
+            } catch (Exception e) {
                 responseMessage.setMessage("login fail");
                 log.error("login error for username: " + loginInfo.getUsername(), e);
             }

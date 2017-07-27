@@ -17,7 +17,7 @@ public class Application {
     private EntityManager entityManager;
 
     @Bean
-    public JPAQueryFactory JPAQueryFactory(){
+    public JPAQueryFactory JPAQueryFactory() {
         JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
         return queryFactory;
     }

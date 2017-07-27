@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "access_role")
-public class AccessRoleEntity implements Serializable{
+public class AccessRoleEntity implements Serializable {
 
     @Id
     @GeneratedValue

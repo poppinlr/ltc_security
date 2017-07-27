@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Created by zhuochen on 2017/7/13.
  */
 @Repository
-public interface RoleEntityRepository extends JpaRepository<RoleEntity, Integer> ,QueryDslPredicateExecutor {
+public interface RoleEntityRepository extends JpaRepository<RoleEntity, Integer>, QueryDslPredicateExecutor {
     RoleEntity findByRoleName(String roleName);
 
 //    List<RoleEntity> findByCompanyIdIn(List<Integer> companyIds);

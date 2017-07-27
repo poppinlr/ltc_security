@@ -16,15 +16,15 @@ import java.util.Date;
 public class CreateAndModifyListener {
 
     @PrePersist
-    public void setCreatedAtAndCreatedBy(BaseExtendEntity entity){
+    public void setCreatedAtAndCreatedBy(BaseExtendEntity entity) {
         entity.setCreatedAt(new Date());
 
 
         Subject subject = SecurityUtils.getSubject();
-        if(subject.getPrincipal() == null){
+        if (subject.getPrincipal() == null) {
             entity.setCreatedBy(SecurityConstant.ADMIN_ID);
-        }else{
-            entity.setCreatedBy(((UserLoginEntity)subject.getPrincipal()).getUserId());
+        } else {
+            entity.setCreatedBy(((UserLoginEntity) subject.getPrincipal()).getUserId());
         }
 
         setModifiedAtAndModifiedBy(entity);
@@ -36,10 +36,10 @@ public class CreateAndModifyListener {
         entity.setModifiedAt(new Date());
 
         Subject subject = SecurityUtils.getSubject();
-        if(subject.getPrincipal() == null){
+        if (subject.getPrincipal() == null) {
             entity.setModifiedBy(SecurityConstant.ADMIN_ID);
-        }else{
-            entity.setModifiedBy(((UserLoginEntity)subject.getPrincipal()).getUserId());
+        } else {
+            entity.setModifiedBy(((UserLoginEntity) subject.getPrincipal()).getUserId());
         }
     }
 }

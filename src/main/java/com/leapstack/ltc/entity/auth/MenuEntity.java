@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "menu")
 @EntityListeners(CreateAndModifyListener.class)
-public class MenuEntity extends BaseExtendEntity implements Serializable{
+public class MenuEntity extends BaseExtendEntity implements Serializable {
 
     @Id
     @GeneratedValue

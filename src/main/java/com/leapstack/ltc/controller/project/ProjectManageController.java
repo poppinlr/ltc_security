@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProjectManageController {
 
     @RequestMapping(value = "")
-    public void list(){
+    public void list() {
 
     }
 }

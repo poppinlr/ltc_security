@@ -15,11 +15,11 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ToString(exclude = {"accessEntities","userLoginEntities","companyEntity"})
+@ToString(exclude = {"accessEntities", "userLoginEntities", "companyEntity"})
 @Entity
 @Table(name = "role")
 @EntityListeners(CreateAndModifyListener.class)
-public class RoleEntity extends BaseExtendEntity implements Serializable{
+public class RoleEntity extends BaseExtendEntity implements Serializable {
 
     @Id
     @GeneratedValue
@@ -44,8 +44,8 @@ public class RoleEntity extends BaseExtendEntity implements Serializable{
     @JsonManagedReference
     private List<UserLoginEntity> userLoginEntities;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonBackReference
     private CompanyEntity companyEntity;
 }

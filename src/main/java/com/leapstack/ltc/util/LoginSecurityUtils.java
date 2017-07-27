@@ -6,9 +6,9 @@ import org.apache.shiro.SecurityUtils;
 /**
  * Created by zhuochen on 2017/7/19.
  */
-public class LoginSecurityUtils extends SecurityUtils{
+public class LoginSecurityUtils extends SecurityUtils {
 
-    public static UserLoginEntity getUserLoginEntity(){
-        return (UserLoginEntity)getSubject().getPrincipal();
+    public static UserLoginEntity getUserLoginEntity() {
+        return (UserLoginEntity) getSubject().getPrincipal();
     }
 }

@@ -1,7 +1,7 @@
 package com.leapstack.ltc.controller.auth;
 
 import com.leapstack.ltc.service.auth.MenuService;
-import com.leapstack.ltc.vo.auth.MenuVO;
+import com.leapstack.ltc.vo.auth.MenuResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class MenuManageController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<MenuVO> getMenuList(){
+    public List<MenuResponseVO> getMenuList() {
         return menuService.getMenuWithAccessList();
     }
 }
