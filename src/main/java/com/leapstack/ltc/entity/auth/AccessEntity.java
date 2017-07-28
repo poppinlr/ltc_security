@@ -32,8 +32,11 @@ public class AccessEntity extends BaseExtendEntity implements Serializable {
     @Column(name = "access_name")
     private String accessName;
 
-    @ManyToOne//(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "menu_id")
+    private Integer menuId;
+
+    @ManyToOne//(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "menu_id", referencedColumnName = "menu_id", insertable = false, updatable = false)
     @JsonBackReference
     private MenuEntity menuEntity;
 

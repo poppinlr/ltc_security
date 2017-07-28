@@ -2,7 +2,6 @@ package com.leapstack.ltc.service.auth;
 
 import com.leapstack.ltc.entity.auth.RoleEntity;
 import com.leapstack.ltc.repository.auth.AccessEntityRepository;
-import com.leapstack.ltc.repository.auth.CompanyEntityRepository;
 import com.leapstack.ltc.repository.auth.RoleEntityRepository;
 import com.leapstack.ltc.vo.auth.RoleRequestVO;
 import com.leapstack.ltc.vo.web.ResponseMessage;
@@ -25,9 +24,6 @@ public class RoleManageService {
     @Autowired
     private AccessEntityRepository accessEntityRepository;
 
-    @Autowired
-    private CompanyEntityRepository companyEntityRepository;
-
     @Transactional
     public ResponseMessage createRole(RoleRequestVO requestVO) {
         ResponseMessage responseMessage = new ResponseMessage();
@@ -36,7 +32,7 @@ public class RoleManageService {
         entity.setRoleName(requestVO.getRoleName());
         entity.setComment(requestVO.getComment());
         entity.setActive(requestVO.getActive());
-        entity.setCompanyEntity(companyEntityRepository.findOne(requestVO.getCompanyId()));
+        entity.setCompanyId(requestVO.getCompanyId());
         entity.setAccessEntities(accessEntityRepository.findByAccessIdIn(requestVO.getAccessIds()));
         try {
             roleEntityRepository.save(entity);
@@ -59,7 +55,7 @@ public class RoleManageService {
             entity.setRoleName(requestVO.getRoleName());
             entity.setActive(requestVO.getActive());
             entity.setComment(requestVO.getComment());
-            entity.setCompanyEntity(companyEntityRepository.findOne(requestVO.getCompanyId()));
+            entity.setCompanyId(requestVO.getCompanyId());
             entity.setAccessEntities(accessEntityRepository.findByAccessIdIn(requestVO.getAccessIds()));
             try {
                 roleEntityRepository.save(entity);

@@ -42,13 +42,19 @@ public class UserLoginEntity extends BaseExtendEntity implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "company_id")
+    private Integer companyId;
+
+    @Column(name = "role_id")
+    private Integer roleId;
+
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id", insertable = false, updatable = false)
     @JsonBackReference
     private CompanyEntity companyEntity;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id", insertable = false, updatable = false)
     @JsonBackReference
     private RoleEntity roleEntity;
 

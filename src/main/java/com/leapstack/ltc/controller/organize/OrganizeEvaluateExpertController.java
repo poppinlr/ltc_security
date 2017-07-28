@@ -1,7 +1,9 @@
 package com.leapstack.ltc.controller.organize;
 
-import com.leapstack.ltc.entity.organization.evaluate.OrganizeEvaluateExpertEntity;
 import com.leapstack.ltc.service.organize.OrganizeEvaluateExpertService;
+import com.leapstack.ltc.vo.organization.evaluate.OrganizeEvaluateExpertFilter;
+import com.leapstack.ltc.vo.organization.evaluate.OrganizeEvaluateExpertRequest;
+import com.leapstack.ltc.vo.organization.evaluate.OrganizeEvaluateExpertResponse;
 import com.leapstack.ltc.vo.web.PageResponse;
 import com.leapstack.ltc.vo.web.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +22,20 @@ public class OrganizeEvaluateExpertController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public PageResponse<OrganizeEvaluateExpertEntity> listOrganize(PageRequest pageRequest) {
-        return organizeService.listOrganize(pageRequest);
+    public PageResponse<OrganizeEvaluateExpertResponse> listOrganize(PageRequest pageRequest, OrganizeEvaluateExpertFilter filter) {
+        return organizeService.listOrganize(pageRequest, filter);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseMessage createOrganize(OrganizeEvaluateExpertEntity entity) {
-        return organizeService.createOrganize(entity);
+    public ResponseMessage createOrganize(OrganizeEvaluateExpertRequest request) {
+        return organizeService.createOrganize(request);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseMessage updateOrganize(OrganizeEvaluateExpertEntity entity) {
-        return organizeService.updateOrganize(entity);
+    public ResponseMessage updateOrganize(OrganizeEvaluateExpertRequest request) {
+        return organizeService.updateOrganize(request);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)

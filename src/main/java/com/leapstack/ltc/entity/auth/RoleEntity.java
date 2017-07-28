@@ -44,8 +44,11 @@ public class RoleEntity extends BaseExtendEntity implements Serializable {
     @JsonManagedReference
     private List<UserLoginEntity> userLoginEntities;
 
+    @Column(name = "company_id")
+    private Integer companyId;
+
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", referencedColumnName = "company_id", insertable = false, updatable = false)
     @JsonBackReference
     private CompanyEntity companyEntity;
 }

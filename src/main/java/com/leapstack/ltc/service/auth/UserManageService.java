@@ -39,7 +39,7 @@ public class UserManageService {
     public PageResponse<UserLoginResponseVO> listUser(PageRequest pageRequest, Integer companyId, Integer roleId) {
 
         //get page data
-        BooleanBuilder when = null;
+        BooleanBuilder when;
         if (roleId == null) {
             when = new BooleanBuilder(qUserLoginEntity.companyEntity.companyId.eq(companyId));
         } else {
@@ -69,8 +69,8 @@ public class UserManageService {
         userLoginEntity.setName(requestVO.getName());
         userLoginEntity.setEmail(requestVO.getEmail());
         userLoginEntity.setActive(requestVO.getActive());
-        userLoginEntity.setCompanyEntity(companyEntityRepository.findOne(requestVO.getCompanyId()));
-        userLoginEntity.setRoleEntity(roleEntityRepository.findOne(requestVO.getRoleId()));
+        userLoginEntity.setCompanyId(requestVO.getCompanyId());
+        userLoginEntity.setRoleId(requestVO.getRoleId());
         try {
             userLoginEntityRepository.save(userLoginEntity);
             responseMessage.setSuccess(true);
@@ -95,8 +95,8 @@ public class UserManageService {
             entity.setName(userLoginVO.getName());
             entity.setEmail(userLoginVO.getEmail());
             entity.setActive(userLoginVO.getActive());
-            entity.setCompanyEntity(companyEntityRepository.findOne(userLoginVO.getCompanyId()));
-            entity.setRoleEntity(roleEntityRepository.findOne(userLoginVO.getRoleId()));
+            entity.setCompanyId(userLoginVO.getCompanyId());
+            entity.setRoleId(userLoginVO.getRoleId());
             try {
                 userLoginEntityRepository.save(entity);
                 responseMessage.setSuccess(true);

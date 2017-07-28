@@ -42,7 +42,7 @@ public class AuthService {
                 responseMessage.setUserId(userLoginEntity.getUserId());
                 responseMessage.setUsername(userLoginEntity.getUsername());
                 responseMessage.setName(userLoginEntity.getName());
-                if(userLoginEntity.getRoleEntity() != null){
+                if (userLoginEntity.getRoleEntity() != null) {
                     responseMessage.setRoleId(userLoginEntity.getRoleEntity().getRoleId());
                     responseMessage.setRoleName(userLoginEntity.getRoleEntity().getRoleName());
                 }

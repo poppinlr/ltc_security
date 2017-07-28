@@ -1,12 +1,13 @@
 //package com.leapstack.ltc.service.auth;
 //
-//import com.google.common.collect.Lists;
 //import com.leapstack.ltc.Application;
 //import com.leapstack.ltc.config.shiro.CustomizeRealm;
+//import com.leapstack.ltc.entity.auth.QRoleEntity;
 //import com.leapstack.ltc.entity.auth.RoleEntity;
-//import com.leapstack.ltc.repository.auth.CompanyEntityRepository;
 //import com.leapstack.ltc.repository.auth.RoleEntityRepository;
 //import com.leapstack.ltc.vo.web.LoginInfo;
+//import com.querydsl.core.BooleanBuilder;
+//import com.querydsl.jpa.impl.JPAQueryFactory;
 //import lombok.extern.log4j.Log4j;
 //import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 //import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
@@ -15,6 +16,9 @@
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.data.domain.Page;
+//import org.springframework.data.domain.PageRequest;
+//import org.springframework.data.domain.Sort;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //
 //import static org.apache.shiro.SecurityUtils.setSecurityManager;
@@ -34,17 +38,16 @@
 //    private AuthService authService;
 //
 //    @Autowired
-//    private CompanyEntityRepository companyEntityRepository;
-//
-//    @Autowired
-//    private RoleManageService roleManageService;
-//
-//    @Autowired
 //    private RoleEntityRepository roleEntityRepository;
 //
+//    @Autowired
+//    private JPAQueryFactory jpaQueryFactory;
+//
+//    private static QRoleEntity qRoleEntity = QRoleEntity.roleEntity;
+//
 //    @Before
-//    public void init(){
-//        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+//    public void init() {
+//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 //        securityManager.setRealm(customizeRealm);
 //        securityManager.setSessionManager(new DefaultWebSessionManager());
 //        setSecurityManager(securityManager);
@@ -53,25 +56,9 @@
 //    }
 //
 //    @Test
-//    public void create(){
-//        RoleEntity roleEntity = new RoleEntity();
-//        roleEntity.setRoleName("role1");
-//        roleEntity.setComment("test");
-//        roleEntity.setCompanyEntity(companyEntityRepository.findOne(1));
-//
-//        roleManageService.createRole(roleEntity, Lists.newArrayList(1,2,3));
-//
+//    public void test() {
+//        BooleanBuilder when = new BooleanBuilder(qRoleEntity.roleId.eq(1));
+//        Page<RoleEntity> page = roleEntityRepository.findAll(when, new PageRequest(0, 10, Sort.Direction.DESC, "companyId"));
 //    }
 //
-//    @Test
-//    public void update(){
-//        RoleEntity roleEntity = roleEntityRepository.findOne(2);
-//        roleManageService.updateRole(roleEntity, Lists.newArrayList(1, 2, 3));
-//    }
-//
-//    @Test
-//    public void delete(){
-//        RoleEntity roleEntity = roleEntityRepository.findOne(2);
-//        roleManageService.deleteRole(roleEntity.getRoleId());
-//    }
 //}

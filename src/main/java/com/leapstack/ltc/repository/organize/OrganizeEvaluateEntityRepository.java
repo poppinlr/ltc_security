@@ -9,5 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface OrganizeEvaluateEntityRepository extends JpaRepository<OrganizeEvaluateEntity, Integer>, QueryDslPredicateExecutor {
 
     OrganizeEvaluateEntity findByOrgNumber(String number);
-
 }
