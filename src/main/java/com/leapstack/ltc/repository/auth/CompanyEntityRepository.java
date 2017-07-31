@@ -12,5 +12,4 @@ public interface CompanyEntityRepository extends JpaRepository<CompanyEntity, In
 
     List<CompanyEntity> findByParentId(Integer id);
 
-    CompanyEntity findByCompanyName(String name);
 }

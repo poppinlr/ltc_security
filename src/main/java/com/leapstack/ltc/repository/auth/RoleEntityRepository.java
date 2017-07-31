@@ -10,7 +10,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RoleEntityRepository extends JpaRepository<RoleEntity, Integer>, QueryDslPredicateExecutor {
-    RoleEntity findByRoleName(String roleName);
-
-//    List<RoleEntity> findByCompanyIdIn(List<Integer> companyIds);
 }

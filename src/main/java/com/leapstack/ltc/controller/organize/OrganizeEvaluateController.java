@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/auth/organize/evaluate")
@@ -21,6 +22,12 @@ public class OrganizeEvaluateController {
 
     @Autowired
     private OrganizeEvaluateService organizeService;
+
+    @RequestMapping(value = "/listByCompanyId", method = RequestMethod.GET)
+    @ResponseBody
+    public List<OrganizeEvaluateResponse> listOrganizeByCompnayId(Integer companyId) {
+        return organizeService.listOrganizeByCompnayId(companyId);
+    }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody

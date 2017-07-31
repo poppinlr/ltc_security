@@ -30,6 +30,11 @@ public class OrganizeEvaluateService {
 
     private static QOrganizeEvaluateEntity qOrganize = QOrganizeEvaluateEntity.organizeEvaluateEntity;
 
+
+    public List<OrganizeEvaluateResponse> listOrganizeByCompnayId(Integer companyId) {
+        return null;
+    }
+
     public PageResponse<OrganizeEvaluateResponse> listOrganize(PageRequest pageRequest, OrganizeEvaluateFilter filter) {
         UserLoginEntity userLoginEntity = UtilService.getUserLoginEntity();
 
@@ -116,4 +121,5 @@ public class OrganizeEvaluateService {
 
         return responseMessage;
     }
+
 }

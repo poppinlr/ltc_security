@@ -38,18 +38,19 @@ public class CompanyResponseVO {
         this.parentId = entity.getParentId();
         this.level = entity.getLevel();
         this.createdAt = entity.getCreatedAt();
-        for (RoleEntity roleEntity : entity.getRoleEntities()) {
-            this.roleVOS.add(new RoleResponseVO(roleEntity));
-        }
-
-        if (entity.getUserLoginEntities() != null) {
-            List<UserLoginEntity> userLoginEntity = entity.getUserLoginEntities();
-            this.userSize = userLoginEntity.size();
-            Integer loopSize = userLoginEntity.size() > 10 ? 10 : userLoginEntity.size();
-
-            for (int i = 0; i < loopSize; i++) {
-                this.userLoginVOS.add(new UserLoginResponseVO(entity.getUserLoginEntities().get(i)));
-            }
-        }
+//
+//        for (RoleEntity roleEntity : entity.getRoleEntities()) {
+//            this.roleVOS.add(new RoleResponseVO(roleEntity));
+//        }
+//
+//        if (entity.getUserLoginEntities() != null) {
+//            List<UserLoginEntity> userLoginEntity = entity.getUserLoginEntities();
+//            this.userSize = userLoginEntity.size();
+//            Integer loopSize = userLoginEntity.size() > 10 ? 10 : userLoginEntity.size();
+//
+//            for (int i = 0; i < loopSize; i++) {
+//                this.userLoginVOS.add(new UserLoginResponseVO(entity.getUserLoginEntities().get(i)));
+//            }
+//        }
     }
 }

@@ -22,6 +22,10 @@ public class CompanyManageService {
     @Autowired
     private CompanyEntityRepository companyEntityRepository;
 
+//    public List<CompanyResponseVO> getPureCompanyVOList() {
+//
+//    }
+
     public List<CompanyResponseVO> getCompanyVOList() {
         //get company entity list
         UserLoginEntity userLoginEntity = (UserLoginEntity) SecurityUtils.getSubject().getPrincipal();
@@ -111,4 +115,5 @@ public class CompanyManageService {
 
         return responseMessage;
     }
+
 }

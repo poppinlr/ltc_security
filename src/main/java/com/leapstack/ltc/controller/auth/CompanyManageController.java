@@ -20,6 +20,13 @@ public class CompanyManageController {
     @Autowired
     private CompanyManageService companyManageService;
 
+    @RequestMapping(value = "/pureList", method = RequestMethod.GET)
+    @ResponseBody
+    public List<CompanyResponseVO> listPureCompany() {
+//        return companyManageService.getPureCompanyVOList();
+        return null;
+    }
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public List<CompanyResponseVO> listCompany() {
