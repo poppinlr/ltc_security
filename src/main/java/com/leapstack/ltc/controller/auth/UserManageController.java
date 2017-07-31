@@ -33,7 +33,7 @@ public class UserManageController {
         return userManageService.listUser(pageRequest, companyId, roleId);
     }
 
-    @RequestMapping(value = "/listByUserId", method = RequestMethod.GET)
+    @RequestMapping(value = "/getByUserId", method = RequestMethod.GET)
     @ResponseBody
     public UserLoginResponseVO getUserByUserId(@Nonnull Integer userId){
         return userManageService.getUserByUserId(userId);
