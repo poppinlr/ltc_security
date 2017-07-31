@@ -36,6 +36,10 @@ public class UserManageService {
 
     private static QUserLoginEntity qUserLoginEntity = QUserLoginEntity.userLoginEntity;
 
+    public UserLoginResponseVO getUserByUserId(Integer userId) {
+        return new UserLoginResponseVO(userLoginEntityRepository.findOne(userId));
+    }
+
     public PageResponse<UserLoginResponseVO> listUser(PageRequest pageRequest, Integer companyId, Integer roleId) {
 
         //get page data
@@ -128,4 +132,5 @@ public class UserManageService {
 
         return responseMessage;
     }
+
 }
