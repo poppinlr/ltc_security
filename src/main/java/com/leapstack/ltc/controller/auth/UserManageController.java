@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Created by zhuochen on 2017/7/19.
  */
@@ -26,9 +29,16 @@ public class UserManageController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public PageResponse<UserLoginResponseVO> listUser(PageRequest pageRequest, Integer companyId, Integer roleId) {
+    public PageResponse<UserLoginResponseVO> listUser(PageRequest pageRequest, @Nonnull Integer companyId, @Nullable Integer roleId) {
         return userManageService.listUser(pageRequest, companyId, roleId);
     }
+
+    @RequestMapping(value = "/listByUserId", method = RequestMethod.GET)
+    @ResponseBody
+    public UserLoginResponseVO getUserByUserId(@Nonnull Integer userId){
+        return userManageService.getUserByUserId(userId);
+    }
+
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
